@@ -1,1 +1,0 @@
-alert("Allert from alert");
