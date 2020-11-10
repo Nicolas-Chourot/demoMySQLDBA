@@ -1,0 +1,1 @@
+alert("Allert from alert");
