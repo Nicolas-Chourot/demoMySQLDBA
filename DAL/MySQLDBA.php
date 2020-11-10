@@ -518,7 +518,8 @@ final class MySQLDataBase {
             $success = true;
             try {
                 $this->hostConnect();
-                $this->conn->exec("CREATE DATABASE $this->dbName");
+                if ($this->conn)
+                    $this->conn->exec("CREATE DATABASE $this->dbName");
             }
             catch(PDOException $e) {
                 $this->rollBack();
@@ -531,7 +532,8 @@ final class MySQLDataBase {
             $success = true;
             try {
                 $this->hostConnect();
-                $this->conn->exec("DROP DATABASE $this->dbName");  
+                if ($this->conn)
+                    $this->conn->exec("DROP DATABASE $this->dbName");  
             }
             catch(PDOException $e) {
                 $this->rollBack();
@@ -550,7 +552,8 @@ final class MySQLDataBase {
             $recordsAffected = 0 ;
             try {
                 $this->DBConnect();
-                $this->conn->exec($sql);
+                if ($this->conn)
+                    $this->conn->exec($sql);
                 $recordsAffected = $this->lastInsertedId();
                 $this->commit();
             }
@@ -563,7 +566,8 @@ final class MySQLDataBase {
         public function querySqlCmd($sql) {
             try {
                 $this->DBConnect();
-                $rows = $this->conn->query($sql)->fetchAll();
+                if ($this->conn)
+                    $rows = $this->conn->query($sql)->fetchAll();
             }
             catch(PDOException $e) {
                 return [];
