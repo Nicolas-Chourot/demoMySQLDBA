@@ -62,7 +62,7 @@ final class Users extends MySQLTable {
     }
     public function register($userData) {
         if (!$this->emailExist($userData["Email"])) {
-            $userData["Admin"] = false;
+            $userData["Admin"] = 0; // false
             $userData["CreationDate"] = date("Y-m-d H:i:s");
             $userData["AvatarGUID"] = $this->uploadAvatar();
             $this->insert($userData);
