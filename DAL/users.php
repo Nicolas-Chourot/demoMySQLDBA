@@ -14,7 +14,7 @@ final class Users extends MySQLTable {
     public $AvatarGUID;
     public $CreationDate;
     public $_imageHelper;
-      
+
     // Méthode abstraite: reféfinition obligatoire
     // Cette méthode permettra à la classe parente
     // de déterminer le type SQL pour chacune des
@@ -104,6 +104,17 @@ final class Users extends MySQLTable {
     function userList() {
         return $this->selectAll("ORDER BY Name");
     }
+
+    /// Cette portion ajoute la fonctionnalité "Singleton"//////
+    private static $_instance = null;
+    public static function getInstance($dataBaseAccess) {
+        if(is_null(self::$_instance)) {
+            $calledClass = get_called_class();
+            self::$_instance = new $calledClass($dataBaseAccess);  
+        }
+        return self::$_instance;
+    }
+    ///////////////////////////////////////////////////////////
 }
 
 function TableUsers() {

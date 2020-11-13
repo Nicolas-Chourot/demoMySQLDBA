@@ -1,5 +1,6 @@
 <?php
     include_once "DAL/users.php";
+    include_once "DAL/photos.php";
 
     session_start();
     $EmailError = "";

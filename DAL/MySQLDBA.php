@@ -64,16 +64,7 @@ abstract class MySQLTable {
         $this->_dataBaseAccess = $_dataBaseAccess;
         $this->create_if_Does_Not_Exist();
     }
-    /// Cette portion ajoute la fonctionnalité "Singleton"//////
-    private static $_instance = null;
-    public static function getInstance($dataBaseAccess) {
-        if(is_null(self::$_instance)) {
-            $calledClass = get_called_class();
-            self::$_instance = new $calledClass($dataBaseAccess);  
-        }
-        return self::$_instance;
-    }
-    ///////////////////////////////////////////////////////////
+    
     private function typeFromDocComment($docComment) {
         return str_replace('*','', str_replace('/','',$docComment));
     }
