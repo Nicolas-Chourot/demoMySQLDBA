@@ -131,7 +131,11 @@ function html_faviconLinkFromUrl($url){
  }
 
  function html_fittedImage($url, $class=''){
-    return "<div class='$class' style='background:url($url) no-repeat; background-position: center;  background-size: cover;'></div>";
+    return <<<HTML
+    <div    class='$class' 
+            style='background:url($url) no-repeat center;  background-size: cover; float:left; margin-right:5px;'>
+            </div>
+    HTML;
  }
 
  function html_flashButtonLink($flashButtonType, $link, $tooltip, $position = 'top'){
@@ -143,6 +147,40 @@ function html_faviconLinkFromUrl($url){
 function html_flashButton($flashButtonType, $id, $tooltip, $position = 'top'){
     $html = "<div id='$id' class='flashButton $flashButtonType' tooltip=\"$tooltip\" tooltip-position='$position'>";
     $html .= '</div>';
+    return $html;
+}
+
+function html_Confirm($title, $message, $link) {
+    $html = <<<HTML
+    <div class='flashButton iconDelete' 
+         tooltip='Effacer' 
+         tooltip-position='bottom'
+         onclick='
+         $.confirm({
+            title: \"$title\",
+            content: \"$message\",
+            buttons: {
+                confirmer: function () {
+                    document.location = "$link";
+                },
+                annuler: {},
+            }
+        });'
+    >
+    </div>
+    HTML;
+    return $html;
+}
+
+function html_makeRating($name, $value, $readOnly = true){
+    $disableAttribute = $readOnly?"disabled":"";
+    $html = "<input type='radio' name='$name' class='RatingBar' value='$value' $disableAttribute/>";
+    return $html;
+}
+
+function html_makeRatingSummary($name, $value, $nbRatings){
+    $html = html_makeRating($name, $value);
+    $html.= "<span class='ratingSummary'>($nbRatings)</span>";
     return $html;
 }
 ?>

@@ -48,7 +48,7 @@ class ImageHelper {
     private function newGUID() {
         $GUID = '';
         do {
-            $GUID = com_create_guid();
+            $GUID = GUIDv4();
         } while (file_exists($this->getURL($GUID)));
         return $GUID;
     }

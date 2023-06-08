@@ -1,5 +1,5 @@
 <?php
-
+include_once "guid.php";
 //////////////////////////////////////////////////////////////////////////////////////////////
 //
 // Module de génération de code sql et de gestion de base de données 
@@ -56,6 +56,8 @@ date_default_timezone_set('US/Eastern');
 //////////////////////////////////////////////////////////////////////////////////////////////
 abstract class MySQLTable {
     protected $_dataBaseAccess = null;
+    
+    public $Id; // champ commun à tous les descendants
 
     abstract public function init();
 
@@ -170,7 +172,7 @@ abstract class MySQLTable {
                         $sqlType = 'DOUBLE'; 
                         break;
                     case 'guid':
-                        $guidSample = com_create_guid();
+                        $guidSample = GUIDv4();
                         $guidSampleLength = strlen($guidSample) + 1;
                         $sqlType = "VARCHAR($guidSampleLength)";
                         break;
@@ -420,17 +422,17 @@ final class MySQLDataBase {
         private $conn;
 
         // Ici les réglages pourraient êtres stockés dans un fichier de constantes globales de l'application
-        public function __construct($dbName) {    
-            $this->host = 'localhost'; 
-            $this->username = 'root'; 
-            $this->password = ''; 
-            $this->dbName = $dbName;
+        public function __construct($dbName, $host, $username, $password) {  
+            $this->dbName = $dbName;  
+            $this->host = $host; 
+            $this->username = $username; 
+            $this->password = $password; 
             $this->autoCommit = true; 
             $this->conn = null; 
         } 
-        public static function getInstance($dbName) {
+        public static function getInstance($dbName, $host, $username, $password) {
             if(is_null(self::$_instance)) {
-                self::$_instance = new MySQLDataBase($dbName);  
+                self::$_instance = new MySQLDataBase($dbName, $host, $username, $password);  
             }
             return self::$_instance;
         }
@@ -567,4 +569,3 @@ final class MySQLDataBase {
             return $rows;
         }
     }
-?>

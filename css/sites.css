@@ -23,14 +23,15 @@
     font-size:18px;
     padding:20px;
     margin: 0 auto;	
-    width:60%;
+    width:80%;
     padding:20px;
     color:white;
 }
 .logo {
     margin:8px;
-    width:140px;
+    width:100px;
     float:left;
+    cursor: pointer;
 }
 body {
     height:1000px;
@@ -68,8 +69,15 @@ input {
     display: grid; 
     grid-template-columns:80px 25% 35% 20% 5%;
 }
+.detailsContainer {
+    display: grid; 
+    grid-template-columns:80% 20%;
+}
 .btn-icon {
     width:30px;
+}
+.siteLogo {
+    width:25px;
 }
 .smallAvatar {
     width: 40px;
@@ -93,6 +101,11 @@ input {
     margin:6px;
     height:270px;
 }
+.ellipsis {
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    overflow: hidden; 
+}
 .cell {
     height: 60px;
     text-overflow: ellipsis;
@@ -104,4 +117,41 @@ input {
 
 div2{
     border: 1px solid red;
+}
+
+.thumbnailListContainer{
+    display: grid;
+    grid-gap: 1em;
+    grid-template-columns: repeat(auto-fill, 180px);
+}
+
+.thumbnailContainer {
+    text-align: center;
+    width:180px;
+    cursor: pointer;
+}
+
+.thumbnail:hover{
+   border:4px solid blue;
+}
+
+.thumbnailHeader{
+    margin:auto;
+    width: 95%;
+    text-align: center;
+    padding-left: 5px;
+    padding-right: 5px;
+}
+
+.thumbnail{
+   width:170px;
+   height:170px;
+   margin:3px;
+   border:4px solid transparent;
+   border-radius: 8px;
+}
+
+.fixeSizePhoto {
+    width:100%;
+    height:800px;
 }

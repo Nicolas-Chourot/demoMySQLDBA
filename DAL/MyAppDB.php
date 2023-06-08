@@ -1,5 +1,6 @@
 <?php
     function DB() {
-        return MySQLDataBase::getInstance('MyAppDB');
+            // MySQLDataBase::getInstance($DBName, $host, $username, $password)
+        return MySQLDataBase::getInstance('MyAppDB', 'localhost', 'root', ''); 
     }
 ?>

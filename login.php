@@ -20,7 +20,7 @@
             if (TableUsers()->userValid($Email, $Password)) {
                 $_SESSION["validUser"] = true;
                 $_SESSION["loggedUser"] = TableUsers()->findByEmail($Email);
-                header('location:listUsers.php'); 
+                header('location:listPhotos.php'); 
                 exit();
             } else 
                 $PasswordError = "<span style='color:red'>Mot de passe incorrect</span><br>";

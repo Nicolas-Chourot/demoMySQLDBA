@@ -4,7 +4,6 @@ include_once "MyAppDB.php";
 include_once "utilities/imageHelper.php";
 final class Users extends MySQLTable {
     // Énumération des champs de la table
-    public $Id;
     /** VARCHAR(64) */
     public $Name;
     /** VARCHAR(128) */
@@ -105,7 +104,6 @@ final class Users extends MySQLTable {
         return $this->selectAll("ORDER BY Name");
     }
 
-    /// Cette portion ajoute la fonctionnalité "Singleton"//////
     private static $_instance = null;
     public static function getInstance($dataBaseAccess) {
         if(is_null(self::$_instance)) {
@@ -114,11 +112,11 @@ final class Users extends MySQLTable {
         }
         return self::$_instance;
     }
-    ///////////////////////////////////////////////////////////
 }
 
 function TableUsers() {
     return Users::getInstance(DB());
 }
 
+TableUsers();
 ?>

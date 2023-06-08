@@ -1,4 +1,5 @@
 <?php
+include_once "DAL/guid.php";
 function sanitizeString($str) {
       $str = stripslashes($str);
       $str = htmlentities($str);
@@ -7,7 +8,7 @@ function sanitizeString($str) {
       return $str;
 }
 function getAntiForgeryToken() {
-      $guid = com_create_guid();
+      $guid = GUIDv4();
       $_SESSION['token'] = $guid;
       return '<input type="hidden" name="token" value="'.$_SESSION["token"].'">';
 }
